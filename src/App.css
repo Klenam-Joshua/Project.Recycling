@@ -1,9 +1,12 @@
 /* Root variables for colors */
 :root {
   --green-light: #dcfce7;
-  --green-dark: #15803d;
+  --green-dark: #316b57;
   --blue-light: #e0f2fe;
   --blue-dark: #0369a1;
+  --glass-green: #048d72;
+  --bg-main: #e3e9e9;
+  /* --dark-green: #316b57; */
 }
 
 /* Reset styles */
@@ -11,6 +14,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html,
+body {
+  background-color: var(--bg-main);
 }
 
 body {
@@ -147,3 +155,20 @@ body {
     font-size: 1.5rem;
     font-weight: bold;
   } */
+
+#app__wrapper {
+  display: flex;
+  align-items: center;
+}
+#app__content {
+  background-color: var(--bg-main);
+}
+
+#header {
+  background-color: var(--green-dark);
+}
+
+#content_side {
+  width: calc(100% - 15rem);
+  margin-left: 15rem;
+}

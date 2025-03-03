@@ -1,0 +1,12 @@
+#profile-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#profile-image img {
+  width: 10dvw;
+  height: 10dvw;
+  border-radius: 50%;
+  border: 1px solid;
+}
