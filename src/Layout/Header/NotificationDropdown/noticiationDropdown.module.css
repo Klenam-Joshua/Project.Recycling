@@ -1,0 +1,9 @@
+.btn_wrapper {
+  position: relative;
+}
+
+.btn_wrapper_badge {
+  position: absolute;
+  top: -0.5rem;
+  left: 0.7rem;
+}

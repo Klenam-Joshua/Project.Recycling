@@ -9,7 +9,7 @@ import "./assets/styles/global.css";
 export default function App() {
   return (
     <div>
-      <BrowserRouter>
+      <BrowserRouter basename="recycling">
         <Routes>
           <Route path="/*" element={<Layout />} />
           <Route path="/home" element={<HomePage />} />

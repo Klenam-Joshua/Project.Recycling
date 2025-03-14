@@ -39,12 +39,17 @@ export default function Sidebar() {
   }, []);
   return (
     <aside id="side_bar">
-      <div className="bg-white d-flex justify-content-center align-items-center">
+      <div
+        className="bg-white d-flex justify-content-center align-items-center "
+        style={{
+          paddingBlock: "0.16rem",
+        }}
+      >
         <img
           src={Logo}
           style={{
-            width: "3rem",
-            height: "3rem",
+            width: "2.85rem",
+            height: "2.85rem",
           }}
         />
       </div>
