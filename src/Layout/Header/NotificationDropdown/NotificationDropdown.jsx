@@ -58,8 +58,8 @@ export default function NotificationDropdown() {
         target="PopoverLegacy"
         trigger="legacy"
       >
-        <PopoverHeader>Legacy Trigger</PopoverHeader>
-        <PopoverBody>All notifications go here</PopoverBody>
+        <PopoverHeader>Notifications</PopoverHeader>
+        <PopoverBody>No notification to display </PopoverBody>
       </UncontrolledPopover>
     </div>
   );
