@@ -5,7 +5,7 @@ export const games = [
 
     id: 1,
     items: {
-      progress: 99,
+      progress: 60,
       pointsEarned: 4,
     },
   },
@@ -13,17 +13,17 @@ export const games = [
     name: "E-waste Puzzle",
     color: "#fa0",
     items: {
-      progress: 99,
+      progress: 30,
       pointsEarned: 4,
     },
 
     id: 2,
   },
   {
-    name: "Rubbish Sorting",
+    name: "Time Challenge",
     color: "blue",
     items: {
-      progress: 99,
+      progress: 49,
       pointsEarned: 8,
     },
 
