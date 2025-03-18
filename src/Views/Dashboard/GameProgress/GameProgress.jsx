@@ -24,7 +24,7 @@ export default function GameProgress() {
       <Row>
         {games?.map((game, indx) => {
           return (
-            <Col key={indx} md="3" lg="3" sm="10">
+            <Col key={indx} md="4" lg="4" sm="12">
               <Card>
                 <CardHeader className="my-0 py-1">
                   <CardTitle className="my-0">
