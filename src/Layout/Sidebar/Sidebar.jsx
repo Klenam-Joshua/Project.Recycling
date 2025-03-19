@@ -23,6 +23,11 @@ const menus = [
     path: "/education",
     icon: "ED",
   },
+  {
+    name: "Map",
+    path: "/map",
+    icon: "MP",
+  },
 ];
 
 export default function Sidebar() {

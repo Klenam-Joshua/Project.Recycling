@@ -18,7 +18,7 @@ export default function Dashboard() {
           </section>
         </Col>
         <Col md="3" lg="3" sm="12">
-          <div className="mt-3">
+          <div className="mt-3"  >
             <UserBadges />
           </div>
         </Col>

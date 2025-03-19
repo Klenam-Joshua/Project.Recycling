@@ -1,4 +1,12 @@
-import { Card, CardBody, CardHeader, Col, Row } from "reactstrap";
+import {
+  Card,
+  CardBody,
+  CardHeader,
+  Col,
+  Row,
+  UncontrolledTooltip,
+} from "reactstrap";
+import BestPlayerBadge from "../../../assets/images/goldMedalBadge.jpg";
 
 export default function UserBadges() {
   return (
@@ -10,8 +18,23 @@ export default function UserBadges() {
               minHeight: "67dvh",
             }}
           >
-            <CardHeader>Badges</CardHeader>
-            <CardBody></CardBody>
+            <CardHeader>Badges (1)</CardHeader>
+            <CardBody>
+              <Row>
+                <Col id="best_player">
+                  <img
+                    src={BestPlayerBadge}
+                    style={{
+                      width: "8rem",
+                      height: "8rem",
+                    }}
+                  />
+                  <UncontrolledTooltip placement="right" target={`best_player`}>
+                    Best Player
+                  </UncontrolledTooltip>
+                </Col>
+              </Row>
+            </CardBody>
           </Card>
         </Col>
       </Row>
