@@ -1,4 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Lilita+One&family=Lobster&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
 /* Root variables for colors */
+
 :root {
   --green-light: #dcfce7;
   --green-dark: #316b57;
@@ -6,6 +9,8 @@
   --blue-dark: #0369a1;
   --glass-green: #048d72;
   --bg-main: #e3e9e9;
+  --cl-accent: #fa0;
+  --font-lobster: "Lobster", sans-serif;
   /* --dark-green: #316b57; */
 }
 

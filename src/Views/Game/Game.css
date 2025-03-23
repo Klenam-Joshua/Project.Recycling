@@ -1,0 +1,53 @@
+#game_wrapper_main {
+  position: relative;
+}
+
+#levels_wrapper {
+  width: 70%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 25rem;
+  background-color: rgb(255, 255, 255, 0.7);
+  padding: 0.5rem;
+}
+
+.level_title_wrapper > div {
+  background-color: var(--glass-green);
+  font-weight: 500;
+  font-size: 1.1rem;
+  font-family: var(--font-lobster);
+  word-spacing: 10px;
+
+  color: white;
+  padding: 0.3rem 2rem;
+  text-transform: uppercase;
+  margin-top: 2rem;
+}
+#levels {
+  width: 70%;
+  margin: auto;
+
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+#levels > .card {
+  background-color: var(--green-dark);
+  /* cursor: url(../../assets/images/cursor2.png), default; */
+  padding: 1rem 1.4rem;
+
+  color: white;
+  /* cursor: pointer; */
+  font-weight: 500;
+  /* background:  var(url); */
+}
+
+#levels > .card:focus {
+  /* background-color: red; */
+  box-shadow: 0 7px 3px var(--green-dark);
+}

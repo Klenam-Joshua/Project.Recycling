@@ -12,7 +12,7 @@ export default function Layout() {
         {/* Header */}
         <Header />
 
-        <section id="app__content" className="px-3">
+        <section id="app__content">
           <Routes>
             {routes?.map((route) => {
               return (

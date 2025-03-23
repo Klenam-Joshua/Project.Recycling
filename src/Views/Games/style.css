@@ -8,3 +8,9 @@
 .game__card:hover {
   box-shadow: 3px 5px 10px rgb(236, 214, 171);
 }
+
+.game_background {
+  background-position: center center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+}

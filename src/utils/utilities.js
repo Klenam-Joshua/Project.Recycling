@@ -1,7 +1,6 @@
-import Languages from "../../src/Layout/Header/Languages/Languages";
+import { Languages } from "../components/reusables/Data/Language";
 
-const _lan = localStorage.getItem("lan");
-
-const translate = (word) => {
+export const t = (word) => {
+  const _lan = localStorage.getItem("lan") || "en";
   Languages[word].find((lan) => lan.language == _lan);
 };

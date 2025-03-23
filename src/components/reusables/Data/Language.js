@@ -9,4 +9,14 @@ export const Languages = {
       trans: "Jeu",
     },
   ],
+  "Select Level": [
+    {
+      language: "en",
+      trans: "Select Level",
+    },
+    {
+      language: "fr",
+      trans: "Jeu",
+    },
+  ],
 };

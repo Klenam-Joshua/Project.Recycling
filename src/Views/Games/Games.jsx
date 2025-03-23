@@ -46,7 +46,7 @@ export default function Games() {
         description="Select recycling game to play"
       />
 
-      <div className="mt-3">
+      <div className="mt-3 px-3">
         <Row className="mx-0">
           {games?.map((game, indx) => {
             return (
