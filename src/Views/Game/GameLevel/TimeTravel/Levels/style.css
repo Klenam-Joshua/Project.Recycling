@@ -1,0 +1,71 @@
+#games_wrapper_main {
+  width: 70%;
+  /* background-color: rgba(255, 255, 255, 0.7);
+   */
+  position: relative;
+
+  height: 30rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: rgba(113, 196, 152, 0.5);
+  margin: auto;
+  margin-top: 1rem;
+}
+.game_image_wrapper {
+  position: relative;
+}
+.game_image_wrapper img {
+  height: 10rem;
+  height: 12rem;
+}
+.dustbin_title {
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  transform: translate(-63%, -50%);
+  font-weight: bold;
+  color: white;
+}
+
+#games_trolley {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 1rem;
+
+  background-color: #d3c6b0;
+  animation: fromRight 1s linear forwards;
+  animation-duration: 2s;
+  right: -100%;
+}
+
+@keyframes fromRight {
+  from {
+    right: -100%;
+  }
+  to {
+    right: 0;
+  }
+}
+
+#rubbish {
+  background-color: var(--green-dark);
+  height: 13rem;
+  width: 50%;
+  margin: auto;
+}
+
+#rubbish img {
+  object-fit: contain;
+  height: 12rem !important;
+}
+
+.scale {
+  animation: scale 0.6s linear;
+}
+
+@keyframes scale {
+  from {
+    transform: scale(0.4);
+  }
+}

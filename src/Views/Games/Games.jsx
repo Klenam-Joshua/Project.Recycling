@@ -10,13 +10,23 @@ import {
 } from "reactstrap";
 import TopBanner from "../../Layout/TopBanner/TopBanner";
 
-import { Image3, GamePad, DragAndDrop, Epuzzle, TimeTravel } from "./Images";
+import { GamePad, DragAndDrop, Epuzzle, TimeTravel } from "./Images";
 
 // styles
 import "./style.css";
-import { useNavigate } from "react-router-dom";
 
-const games = [
+/// Hooks
+import { useNavigate } from "react-router-dom";
+import useFetch from "../../hooks/useFetch";
+
+// Endpoints
+
+import { GET_GAMES } from "../../Endpoints/GameEndpoints";
+
+// Loaders
+import Loader from "../../components/reusables/Data/Loader/Loader";
+
+const _games = [
   {
     name: "Rubbish Sorting",
     image: DragAndDrop,
@@ -36,9 +46,19 @@ const games = [
 export default function Games() {
   const navigate = useNavigate();
 
-  const handleNavigate = (url) => {
-    navigate(url);
-  };
+  const {
+    data: games,
+    error,
+    isLoading,
+    refetch,
+  } = useFetch(GET_GAMES(), [GET_GAMES()], true);
+
+  // const handleNavigate = (url) => {
+  //   navigate(url);
+  // };
+
+  console.log({ games, error });
+
   return (
     <div>
       <TopBanner
@@ -48,20 +68,26 @@ export default function Games() {
 
       <div className="mt-3 px-3">
         <Row className="mx-0">
-          {games?.map((game, indx) => {
-            return (
-              <Col
-                onClick={() => {
-                  navigate(`/games/${game?.id}`);
-                }}
-                key={indx}
-                md="3"
-                lg="3"
-              >
-                <GameCard title={game.name} image={game.image} id={indx} />
-              </Col>
-            );
-          })}
+          {isLoading && <Loader />}
+          {!isLoading &&
+            games?.items?.map((game, indx) => {
+              return (
+                <Col
+                  onClick={() => {
+                    navigate(`/games/${game?.id}`);
+                  }}
+                  key={indx}
+                  md="3"
+                  lg="3"
+                >
+                  <GameCard
+                    title={game.gameName}
+                    image={_games[indx].image}
+                    id={indx}
+                  />
+                </Col>
+              );
+            })}
         </Row>
       </div>
     </div>

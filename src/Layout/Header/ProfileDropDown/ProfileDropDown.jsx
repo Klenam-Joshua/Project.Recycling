@@ -14,11 +14,22 @@ import { PiGearFill } from "react-icons/pi";
 
 // Hooks
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../hooks/useAuth";
 
 export default function ProfileDropDown() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const { auth, setAuth } = useAuth();
+
+  const navigate = useNavigate();
 
   const toggle = () => setDropdownOpen((prevState) => !prevState);
+
+  const handleLogout = () => {
+    setAuth(null);
+    localStorage.removeItem("token");
+    navigate("/home");
+  };
 
   return (
     <div className="d-flex ">
@@ -46,7 +57,7 @@ export default function ProfileDropDown() {
         </DropdownToggle>
         <DropdownMenu>
           <DropdownItem header>Profile</DropdownItem>
-          <DropdownItem>
+          <DropdownItem onClick={() => navigate("/profile-settings")}>
             <div className="d-flex " style={{ gap: "0.6rem" }}>
               <span>
                 <PiGearFill />
@@ -54,7 +65,11 @@ export default function ProfileDropDown() {
               <span>Profile Settings</span>
             </div>
           </DropdownItem>
-          <DropdownItem>
+          <DropdownItem
+            onClick={() => {
+              handleLogout();
+            }}
+          >
             <div className="d-flex " style={{ gap: "0.6rem" }}>
               <span>
                 <IoIosLock />

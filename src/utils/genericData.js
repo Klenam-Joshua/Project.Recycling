@@ -1,5 +1,13 @@
 import SortingImg from "../assets/images/recyclingGameBackground.jpeg";
 import sortingGameAudio from "../assets/audios/sortingGameAudio.mp3";
+import { EggShell, Box, CanDrink, PlasticBottle, Paper } from "./rubbishImages";
+
+import CeramicPlate from "../assets/images/Ceramics.jpg";
+import BananaPeel from "../assets/images/BananaPeel.png";
+import AppleCore from "../assets/images/AppleCore.jpg";
+import CoffeeGrounds from "../assets/images/CoffeeGround.png";
+import GlassBottles from "../assets/images/GlassBottles.png";
+import UsedTissue from "../assets/images/UsedTissue.png";
 
 export const games = [
   {
@@ -55,3 +63,149 @@ export const games = [
 //     id: 3,
 //   },
 // ];
+
+export const rubbishes = [
+  {
+    name: "Can Drink",
+    type: "recycling",
+    image: CanDrink,
+  },
+  {
+    name: "Paper",
+    image: Paper,
+    type: "recycling",
+  },
+  {
+    name: "Plastic Bottle",
+    image: PlasticBottle,
+    type: "recycling",
+  },
+  {
+    name: "Egg Shell",
+    type: "compost",
+    image: EggShell,
+  },
+  {
+    name: "Land Fill",
+    type: "landfill",
+    image: Box,
+  },
+];
+
+export const level2Rubbishes = [
+  // RECYCLING
+
+  {
+    name: "Plastic Bottle",
+    image: PlasticBottle,
+    type: "recycling",
+  },
+
+  // COMPOST
+  {
+    name: "Egg Shell",
+    type: "compost",
+    image: EggShell,
+  },
+  {
+    name: "Banana Peel",
+    type: "compost",
+    image: BananaPeel,
+  },
+  {
+    name: "Apple Core",
+    type: "compost",
+    image: AppleCore,
+  },
+  {
+    name: "Coffee Grounds",
+    type: "compost",
+    image: CoffeeGrounds,
+  },
+  {
+    name: "Can Drink",
+    type: "recycling",
+    image: CanDrink,
+  },
+  {
+    name: "Paper",
+    image: Paper,
+    type: "recycling",
+  },
+
+  // LANDFILL
+  {
+    name: "Land Fill",
+    type: "landfill",
+    image: Box,
+  },
+
+  {
+    name: "Ceramic Plate",
+    type: "landfill",
+    image: CeramicPlate,
+  },
+];
+
+export const level3Rubbishes = [
+  // RECYCLING
+  {
+    name: "Can Drink",
+    type: "recycling",
+    image: CanDrink,
+  },
+  {
+    name: "Plastic Bottle",
+    image: PlasticBottle,
+    type: "recycling",
+  },
+  {
+    name: "Paper",
+    image: Paper,
+    type: "recycling",
+  },
+  {
+    name: "Glass Bottle",
+    type: "recycling",
+    image: UsedTissue,
+  }, // NEW
+
+  // COMPOST
+  {
+    name: "Banana Peel",
+    type: "compost",
+    image: BananaPeel,
+  },
+  {
+    name: "Apple Core",
+    type: "compost",
+    image: AppleCore,
+  },
+  {
+    name: "Coffee Grounds",
+    type: "compost",
+    image: CoffeeGrounds,
+  },
+  {
+    name: "Egg Shell",
+    type: "compost",
+    image: EggShell,
+  },
+
+  // LANDFILL
+  {
+    name: "Land Fill",
+    type: "landfill",
+    image: Box,
+  },
+  {
+    name: "Ceramic Plate",
+    type: "landfill",
+    image: CeramicPlate,
+  },
+  {
+    name: "Used Tissue",
+    type: "landfill",
+    image: UsedTissue,
+  }, // NEW
+];

@@ -1,6 +1,15 @@
 import { Card, CardBody, CardHeader, Col, Row } from "reactstrap";
 import LeaderboardTable from "./LeaderboardTable/LeaderboardTable";
-export default function Leaderboard() {
+import { useEffect, useState } from "react";
+export default function Leaderboard({ items }) {
+  console.log({ items });
+  const [leaderboard, setLeaderboard] = useState([]);
+
+  useEffect(() => {
+    setLeaderboard(() => {
+      return items?.sort((a, b) => a.rank - b.rank);
+    });
+  }, [items]);
   return (
     <div>
       <Row>
@@ -8,7 +17,7 @@ export default function Leaderboard() {
           <Card>
             <CardHeader>Leaderboard</CardHeader>
             <CardBody>
-              <LeaderboardTable />
+              <LeaderboardTable items={leaderboard} />
             </CardBody>
           </Card>
         </Col>

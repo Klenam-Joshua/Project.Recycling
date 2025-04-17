@@ -177,3 +177,28 @@ body {
   width: calc(100% - 15rem);
   margin-left: 15rem;
 }
+
+.course-video:hover,
+.active-video {
+  background-color: #e1e9e9 !important;
+}
+/* 
+#courses_wrapper {
+  --bs-gutter-y: 0;
+  --bs-gutter-x: 0;
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+} */
+
+.course__card {
+  border: 2px solid #fa0;
+  color: black !important;
+}
+
+#header__1 > * {
+  width: 100%;
+}
+
+.nav-link {
+  cursor: pointer !important;
+}

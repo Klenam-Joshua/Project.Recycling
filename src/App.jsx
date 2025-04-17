@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./Views/HomePage/HomePage";
+import { Toaster } from "react-hot-toast";
 import Layout from "./Layout/Layout";
 // import Footer from "./Views/HomePage/Footer/Footer";
 // import Header from "./Views/HomePage/Header/Header";
@@ -11,11 +12,11 @@ export default function App() {
     <div>
       <BrowserRouter basename="recycling">
         <Routes>
-          <Route path="/*" element={<Layout />} />
           <Route path="/home" element={<HomePage />} />
-          {/* <Route path="/" element={<Header />} /> */}
+          <Route path="/*" element={<Layout />} />
         </Routes>
       </BrowserRouter>
+      <Toaster />
     </div>
   );
 }

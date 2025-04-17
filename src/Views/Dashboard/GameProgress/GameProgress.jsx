@@ -16,13 +16,13 @@ import {
 // icons
 import { RiProgress8Fill } from "react-icons/ri";
 
-export default function GameProgress() {
+export default function GameProgress({ progress }) {
   const data = [{ value: 35 }]; // 75% progress
 
   return (
     <div className="mt-3 ">
       <Row>
-        {games?.map((game, indx) => {
+        {progress?.map((game, indx) => {
           return (
             <Col key={indx} md="4" lg="4" sm="12">
               <Card>
@@ -33,7 +33,7 @@ export default function GameProgress() {
                         fontWeight: "400",
                       }}
                     >
-                      {game.name}
+                      {game.gameName}
                     </h6>
                   </CardTitle>
                 </CardHeader>
@@ -45,8 +45,8 @@ export default function GameProgress() {
                         id={`game__${indx}`}
                       >
                         <CircularProgressbar
-                          text={`${game.items?.progress}%`}
-                          value={game.items?.progress}
+                          text={`${game.progressPercentage}%`}
+                          value={game.iprogressPercentage}
                           styles={buildStyles({
                             pathColor: game.color,
                           })}
@@ -56,7 +56,7 @@ export default function GameProgress() {
                         placement="right"
                         target={`game__${indx}`}
                       >
-                        {`progress: ${game.items?.progress}%`}
+                        {`progress: ${game.progressPercentage}%`}
                       </UncontrolledTooltip>
                     </Col>
                     {/* <Col md={5} lg={5}>

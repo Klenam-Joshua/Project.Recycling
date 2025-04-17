@@ -8,7 +8,8 @@ import {
 } from "reactstrap";
 import BestPlayerBadge from "../../../assets/images/goldMedalBadge.jpg";
 
-export default function UserBadges() {
+export default function UserBadges({ medals }) {
+  console.log({ medals });
   return (
     <div>
       <Row>
@@ -20,20 +21,27 @@ export default function UserBadges() {
           >
             <CardHeader>Badges (1)</CardHeader>
             <CardBody>
-              <Row>
-                <Col id="best_player">
-                  <img
-                    src={BestPlayerBadge}
-                    style={{
-                      width: "8rem",
-                      height: "8rem",
-                    }}
-                  />
-                  <UncontrolledTooltip placement="right" target={`best_player`}>
-                    Best Player
-                  </UncontrolledTooltip>
-                </Col>
-              </Row>
+              {medals?.items?.map((medal, indx) => {
+                return (
+                  <Row key={indx}>
+                    <Col id="best_player">
+                      <img
+                        src={BestPlayerBadge}
+                        style={{
+                          width: "8rem",
+                          height: "8rem",
+                        }}
+                      />
+                      <UncontrolledTooltip
+                        placement="right"
+                        target={`best_player`}
+                      >
+                        {medal?.medalName}
+                      </UncontrolledTooltip>
+                    </Col>
+                  </Row>
+                );
+              })}
             </CardBody>
           </Card>
         </Col>

@@ -7,6 +7,7 @@ import { NavLink } from "react-router-dom";
 
 import "../style.css";
 import { useEffect } from "react";
+import { useAuth } from "../../hooks/useAuth";
 const menus = [
   {
     name: "Dashboard",
@@ -28,20 +29,17 @@ const menus = [
     path: "/map",
     icon: "MP",
   },
+
+  {
+    name: "Logs",
+    path: "/logs",
+    icon: "LG",
+  },
 ];
 
 export default function Sidebar() {
-  useEffect(() => {
-    fetch(
-      "http://psl-pnx-idp-vm2:5001/api/Account/GetPasswordPolicyByAccount?accountCode=00000038_09"
-    )
-      .then((resp) => {
-        return resp.json();
-      })
-      .then((res) => {
-        console.log({ res });
-      });
-  }, []);
+  // useAuth
+  const { auth } = useAuth();
   return (
     <aside id="side_bar">
       <div
@@ -62,7 +60,7 @@ export default function Sidebar() {
         <ProfileImage />
       </div>
       <div className="side__username rounded">
-        <h6 className="text-center text-white py-2 mt-4">Angel Naana</h6>
+        <h6 className="text-center text-white py-2 mt-4">{auth?.userName}</h6>
       </div>
       <nav>
         <ul>

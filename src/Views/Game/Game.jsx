@@ -1,30 +1,67 @@
+// Hooks
 import { useParams } from "react-router-dom";
-import TopBanner from "../../Layout/TopBanner/TopBanner";
-import { games } from "../../utils/genericData";
-import "./Game.css";
 import { useEffect, useState } from "react";
-import { Card } from "reactstrap";
 
-//
+//components
+import { Card } from "reactstrap";
+import TopBanner from "../../Layout/TopBanner/TopBanner";
+// import { games } from "../../utils/genericData";
+import SortingImg from "../../assets/images/recyclingGameBackground.jpeg";
+import GameLevel from "./GameLevel/GameLevel";
+
+// styles
+import "./Game.css";
+
+// images
 import Dots from "../../assets/images/dots-black.png";
 import Cursor from "../../assets/images/cursor2.png";
 
 // Audios
 
 import LevelClickAudio from "../../assets/audios/LevelClick2.wav";
+import useFetch from "../../hooks/useFetch";
+
+// Endpoints
+
+import { GET_GAME_LEVELS } from "../../Endpoints/GameEndpoints";
 
 export default function Game() {
   const param = useParams();
   const [activeGame, setActiveGame] = useState({});
   const [canPlayAudio, setCanPlayAudio] = useState(true);
+
+  const [activeGameLevel, setActiveGameLevel] = useState({
+    hasLaunchedLevel: false,
+    level: null,
+    gameCode: null,
+    gameId: "",
+  });
+
   const [audioInstance, setAudioInstance] = useState(null);
 
-  useEffect(() => {
-    // console.log({ param });
-    const _activeGame = games.find((game) => game.id == param.id);
-    console.log({ level: _activeGame?.levels });
-    setActiveGame(_activeGame);
-  }, []);
+  // useEffect(() => {
+  //   // console.log({ param });
+  //   const _activeGame = games.find((game) => game.id == param.id);
+  //   console.log({ level: _activeGame?.levels });
+  //   setActiveGame(_activeGame);
+  // }, []);
+
+  //
+
+  const { isLoading, error, data, refetch } = useFetch(
+    GET_GAME_LEVELS(param?.id),
+    [param.id],
+    true,
+    (resp) => {
+      console.log({ resp });
+      setActiveGame({
+        ...resp,
+        levels: resp.items,
+      });
+    }
+  );
+
+  console.log({ activeGame });
 
   const playAudio = () => {
     if (audioInstance) {
@@ -47,6 +84,7 @@ export default function Game() {
 
   const pauseAudio = () => {
     if (audioInstance) {
+      //     // audio.loop = true;
       try {
         audioInstance.pause();
         console.log({ audioInstance });
@@ -66,7 +104,6 @@ export default function Game() {
     //     audio.src = activeGame.bgAudio;
     //     audio.volume = 0.4;
     //     audio.load();
-    //     // audio.loop = true;
     //     if (audio.HAVE_ENOUGH_DATA) {
     //       audio.play();
     //     }
@@ -135,13 +172,40 @@ export default function Game() {
     }
   };
 
-  const playLevelSound = () => {
+  const playLevelSound = (gameCode, level, leveId) => {
+    console.log({ gameCode, level, something: null });
+    localStorage.setItem("levelId", leveId);
     handlePlayAudio(LevelClickAudio, 1);
+    setActiveGameLevel({
+      hasLaunchedLevel: true,
+      levelCode: level,
+      gameCode,
+      leveId,
+      gameId: param?.id,
+    });
   };
 
+  console.log({ activeGameLevel });
+
+  const prevIsCompleted = (prevGame) => {
+    if (!prevGame) {
+      return true;
+    }
+
+    return prevGame?.progress?.isCompleted;
+  };
+
+  console.log({ activeGameLevel });
   return (
     <div>
-      <TopBanner title={"Active Game"} description={""} />
+      <TopBanner
+        title={`${activeGame?.gameName}`}
+        description={
+          !activeGameLevel.hasLaunchedLevel
+            ? ""
+            : `${activeGameLevel?.levelCode}`
+        }
+      />
       <div className="px-3  mt-2">
         <div
           className="game_background"
@@ -150,7 +214,7 @@ export default function Game() {
             width: "100%",
             height: "80vh",
 
-            background: `url(${activeGame.bgImage})`,
+            background: `url(${SortingImg})`,
             // backgroundSize: "cover",
             // backgroundRepeat: "no-repeat",
             // backgroundPosition: "center center",
@@ -159,7 +223,21 @@ export default function Game() {
           <div className="d-flex justify-content-end">
             <span onClick={() => setCanPlayAudio((prev) => !prev)}>Play</span>
           </div>
-          {activeGame.levels > 1 ? (
+          {activeGameLevel.hasLaunchedLevel ? (
+            <>
+              <GameLevel
+                refetch={refetch}
+                setActiveGameLevel={setActiveGameLevel}
+                activeGameLevel={activeGameLevel}
+                // game={activeGameLevel}
+                {...{
+                  gameCode: activeGameLevel.gameCode,
+                  level: activeGameLevel.levelCode,
+                }}
+              />
+            </>
+          ) : null}
+          {activeGame?.levels && !activeGameLevel.hasLaunchedLevel ? (
             <>
               <div id="levels_wrapper">
                 <div className="level_title_wrapper d-flex justify-content-center">
@@ -167,12 +245,33 @@ export default function Game() {
                 </div>
                 <div>
                   <div id="levels">
-                    {getLevels(activeGame.levels).map(
+                    {activeGame?.levels?.map(
                       // eslint-disable-next-line no-unused-vars
-                      (_, indx) => {
+                      (level, indx) => {
+                        console.log({ level });
+
                         return (
                           <Card
-                            onClick={playLevelSound}
+                            className={`${
+                              level?.progress?.isCompleted
+                                ? "bg-warning"
+                                : prevIsCompleted(activeGame?.levels[indx - 1])
+                                ? "bg-success"
+                                : "bg-secondary"
+                            }`}
+                            onClick={() => {
+                              if (activeGame?.levels[indx - 1]) {
+                                const prevLevel = activeGame?.levels[indx - 1];
+                                if (!prevLevel?.progress?.isCompleted) {
+                                  return;
+                                }
+                              }
+                              playLevelSound(
+                                activeGame?.gameCode,
+                                level?.levelCode,
+                                level._id
+                              );
+                            }}
                             tabIndex={indx}
                             style={{
                               cursor: `url(${Cursor}) , default`,
@@ -180,7 +279,7 @@ export default function Game() {
                             }}
                             key={`level__${indx + 1}`}
                           >
-                            Level {indx + 1}
+                            {level?.levelName}
                           </Card>
                         );
                       }

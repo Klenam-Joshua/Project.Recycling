@@ -2,34 +2,9 @@ import { Table } from "reactstrap";
 
 //hooks
 
-const dummyData = [
-  {
-    rank: 1,
-    userName: "Josh",
-    point: 300,
-    level: 9,
-    winRate: "90%",
-  },
-
-  {
-    rank: 2,
-    userName: "John",
-    point: 240,
-    level: 8,
-    winRate: "80%",
-  },
-
-  {
-    rank: 3,
-    userName: "Daniel",
-    point: 220,
-    level: 7,
-    winRate: "79%",
-  },
-];
 import { useTable } from "react-table";
 import { useMemo } from "react";
-export default function LeaderboardTable() {
+export default function LeaderboardTable({ items }) {
   const columns = useMemo(
     () => [
       {
@@ -38,16 +13,13 @@ export default function LeaderboardTable() {
       },
       {
         Header: "Name",
-        accessor: "userName",
+        accessor: "name",
       },
       {
         Header: "Point Earned",
-        accessor: "point",
+        accessor: "totalPoints",
       },
-      {
-        Header: "Level ",
-        accessor: "level",
-      },
+
       {
         Header: "Win Rate",
         accessor: "winRate",
@@ -58,11 +30,16 @@ export default function LeaderboardTable() {
   const { getTableBodyProps, getTableProps, rows, prepareRow, headerGroups } =
     useTable({
       columns,
-      data: dummyData,
+      data: items,
     });
 
   return (
-    <div>
+    <div
+      style={{
+        height: "12rem",
+        overflow: "auto",
+      }}
+    >
       <Table hover={true} {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup, key) => {
